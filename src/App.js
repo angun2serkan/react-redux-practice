@@ -23,10 +23,17 @@ const initialStore = {
 //reducer
 function reducer(state, action){
   console.log({state, action});
+  if(action.type === "DECREASE"){
+    console.log("hey it actually worked");
+    //state.count = state.count - 1;
+    return {count: state.copunt - 1};
+  }
   return state;
 }
 
+//store
 const store = createStore(reducer, initialStore);
+store.dispatch({type:'DECREASE'});
 console.log(store.getState());
 
 
