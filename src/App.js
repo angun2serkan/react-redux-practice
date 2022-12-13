@@ -17,7 +17,8 @@ import  {createStore} from 'redux';
 
 // initial store
 const initialStore = {
-  count: 2
+  count: 5,
+  name: 'serkan'
 }
 
 //reducer
@@ -25,15 +26,18 @@ function reducer(state, action){
   console.log({state, action});
   if(action.type === "DECREASE"){
     console.log("hey it actually worked");
-    return {count: state.count - 1};
+    return {...state, count: state.count - 1};
   }
   if(action.type === "INCREASE"){
     console.log("hey it actually worked");
-    return {count: state.count + 1};
+    return {...state, count: state.count + 1};
   }
   if(action.type === "RESET"){
     console.log("hey it actually worked");
-    return {count: 0};
+    return {...state, count: 0};
+  }
+  if(action.type == 'CHANGE_NAME'){
+    return {...state, name:'Zeynep'}
   }
   return state;
 }
@@ -43,6 +47,7 @@ const store = createStore(reducer, initialStore);
 store.dispatch({type:'RESET'});
 store.dispatch({type:'DECREASE'});
 store.dispatch({type:'INCREASE'});
+store.dispatch({type:'CHANGE_NAME'});
 console.log(store.getState());
 
 
