@@ -11,16 +11,23 @@ import cartItems from "./cart-items";
 // two arguments - state, action
 // state - old state / state before update
 // action - what happened / what update
-// 
+
 
 import  {createStore} from 'redux';
 
-//reducer
-function reducer(){
-  console.log('shake and bake')
+// initial store
+const initialStore = {
+  count: 2
 }
 
-const store = createStore(() => {});
+//reducer
+function reducer(state, action){
+  console.log({state, action});
+  return state;
+}
+
+const store = createStore(reducer, initialStore);
+console.log(store.getState());
 
 
 function App() {
@@ -28,7 +35,7 @@ function App() {
 
   return (
     <main>
-      <Navbar />
+      <Navbar cart={store.getState()} />
       <CartContainer cart={cartItems} />
     </main>
   );
