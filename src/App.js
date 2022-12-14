@@ -5,46 +5,21 @@ import CartContainer from "./components/CartContainer";
 // items
 import cartItems from "./cart-items";
 // redux stuff
-
 // store - stores data, think of state
 // reducer - function that used to update store
 // two arguments - state, action
 // state - old state / state before update
 // action - what happened / what update
-
-
 import  {createStore} from 'redux';
-import { DECREASE, INCREASE } from "./actions";
+// import { DECREASE, INCREASE } from "./actions";
+import reducer from './reducer';
+import { DECREASE, INCREASE, RESET, CHANGE_NAME } from "./actions";
+
 
 // initial store
 const initialStore = {
   count: 5,
   name: 'serkan'
-}
-
-
-const RESET = "RESET";
-const CHANGE_NAME = "CHANGE_NAME";
-
-//reducer
-function reducer(state, action){
-  console.log({state, action});
-  if(action.type === DECREASE){
-    console.log("hey it actually worked");
-    return {...state, count: state.count - 1};
-  }
-  if(action.type === "INCREASE"){
-    console.log("hey it actually worked");
-    return {...state, count: state.count + 1};
-  }
-  if(action.type === "RESET"){
-    console.log("hey it actually worked");
-    return {...state, count: 0};
-  }
-  if(action.type == 'CHANGE_NAME'){
-    return {...state, name:'Zeynep'}
-  }
-  return state;
 }
 
 //store
@@ -58,7 +33,6 @@ console.log(store.getState());
 
 function App() {
   // cart setup
-
   return (
     <main>
       <Navbar cart={store.getState()} />
