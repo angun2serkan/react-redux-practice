@@ -14,28 +14,26 @@ import  {createStore} from 'redux';
 // import { DECREASE, INCREASE } from "./actions";
 import reducer from './reducer';
 import { DECREASE, INCREASE, RESET, CHANGE_NAME } from "./actions";
+// react-redux / Provider - wraps app, connect - used in components
+
 
 
 // initial store
 const initialStore = {
-  count: 5,
-  name: 'serkan'
+  cart: cartItems,
+  total: 0,
+  amount: 0,
 }
 
 //store
 const store = createStore(reducer, initialStore);
-store.dispatch({type:RESET});
-store.dispatch({type: DECREASE});
-store.dispatch({type:INCREASE});
-store.dispatch({type:CHANGE_NAME});
-console.log(store.getState());
 
 
 function App() {
   // cart setup
   return (
     <main>
-      <Navbar cart={store.getState()} />
+      <Navbar />
       <CartContainer cart={cartItems} />
     </main>
   );
