@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 
-//after add connect() and create mapStateToProps and add amount into it we can use amount as a prop in this component
+//after add connect() and create mapStateToProps and add amount into it we can use amount as a prop in this
 const Navbar = ({amount}) => {
   return (
     <nav>
