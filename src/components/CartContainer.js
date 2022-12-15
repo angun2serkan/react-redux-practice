@@ -1,6 +1,8 @@
 import React from "react";
 import CartItem from "./CartItem";
-const CartContainer = ({cart = []}) => {
+import {connect} from 'react-redux';
+import { CLEAR_CART } from "../actions";
+const CartContainer = ({cart = [], total, dispatch}) => {
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -12,6 +14,11 @@ const CartContainer = ({cart = []}) => {
       </section>
     );
   }
+
+  const clearCart = () => dispatch({type:CLEAR_CART})
+
+
+
   return (
     <section className="cart">
       {/* cart header */}
@@ -29,18 +36,21 @@ const CartContainer = ({cart = []}) => {
         <hr />
         <div className="cart-total">
           <h4>
-            total <span>$0.00</span>
+            total <span>${total}</span>
           </h4>
         </div>
-        <button className="btn clear-btn">clear cart</button>
+        <button className="btn clear-btn" onClick={clearCart}>clear cart</button>
       </footer>
     </section>
   );
 };
 
-const mapStateToProps = selam => {
-  const{cart,total} = selam;
-  return {cart, total}
-};
 
-export default (CartContainer);
+
+function mapStateToProps(store){
+  const{cart, total} = store;
+  return{cart, total};
+  // return{cart:store.cart, total:store.total};
+}
+
+export default connect(mapStateToProps) (CartContainer);
